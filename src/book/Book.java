@@ -1,4 +1,8 @@
 package book;
+
+
+import java.util.Objects;
+
 //图书管理系统一定得有书
 public class Book {
     private String name;//书名
@@ -25,6 +29,7 @@ public class Book {
     public void setIsBorrow(boolean  buf) {
          this.isBorrow = buf;
     }
+
     public boolean isBorrow() {
         return isBorrow;
     }
@@ -64,24 +69,18 @@ public class Book {
                 ", author='" + author + '\'' +
                 ", type='" + type + '\'' +
                 ", price=" + price +
-                ", isBorrow=" +(!isBorrow?"在库":"借出")+
+                ", isBorrow=" + (!isBorrow ? "在库" : "借出") +
                 '}';
     }
 
     @Override
-    public boolean equals(Object obj) {
-            if(obj == this){return true;}
-            if(obj==null||getClass() != obj.getClass()){
-                return false;
-            }
-            Book book1 =( Book)obj;
-            if(this.name.equals(book1.name)){
-                return false;
-            }
-
-            if(this.author.equals(book1.author)){
-                return false;
-            }
-            return true;
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Book book = (Book) o;
+        return price == book.price && isBorrow == book.isBorrow && Objects.equals(name, book.name) && Objects.equals(author, book.author) && Objects.equals(type, book.type);
+    }
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, author, type, price, isBorrow);
     }
 }

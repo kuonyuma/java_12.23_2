@@ -1,8 +1,7 @@
 package use;
-
 import operation.*;
-
 import java.util.Scanner;
+
 
 public class AdminUser extends User{
     public AdminUser(String name){
@@ -14,7 +13,6 @@ public class AdminUser extends User{
         System.out.println("2.增加图书");
         System.out.println("3.减少图书");
         System.out.println("4.书名查找");
-        System.out.println("5.修改图书信息");
 
         Scanner sc = new Scanner(System.in);
         System.out.print("请输入功能");

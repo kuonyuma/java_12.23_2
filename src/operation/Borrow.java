@@ -1,39 +1,26 @@
 package operation;
 
-import book.BooList;
+import book.Book;
+import book.BookList;
 
 import java.util.Scanner;
 
 public class Borrow implements Operation{
     @Override
-    public void work(BooList booList) {
-        //System.out.println("借阅图书");
-        //将isBorrow修改为true
-        //选择要借出的书籍
-        int cureSize = booList.getBoosSize();
-        int pos = -1;
-        //先输入书名查找到书的下标
+    public void work(BookList bookList) {
+
         System.out.println("请输入你要借出的书名");
         Scanner sc = new Scanner(System.in);
         String name = sc.nextLine();
-        //返回下标,查找函数
-        //如何查找?
-        for (int i = 0; i < cureSize; i++) {
-            if(booList.getBooks(i).getName().equals(name)){//booList.getBooks(i).getName().equals(name)这个语句的逻辑是什么
-                pos = i;
-                break;
-            }
-        }
-        if(pos == -1){
-            System.out.println("未找到该书籍");
+        if(!bookList.find(name)){
+            System.out.println("没有这本书");
             return;
         }
-        if(booList.getBooks(pos).isBorrow() == true){
+        if(bookList.getBook(name).isBorrow()){
             System.out.println("该书已经借出");
             return;
         }
-        booList.getBooks(pos).setIsBorrow(true);
-
-
+        bookList.getBook(name).setIsBorrow(true);
+        System.out.println("成功借到书籍");
     }
 }

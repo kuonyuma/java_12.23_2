@@ -1,10 +1,10 @@
 package operation;
 
-import book.BooList;
+import book.BookList;
 
 public class Exit implements Operation{
     @Override
-    public void work(BooList booList) {
+    public void work(BookList booList) {
         System.out.println("退出程序");
         System.exit(0);
     }

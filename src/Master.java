@@ -1,8 +1,7 @@
-import book.BooList;
+import book.BookList;
 import use.AdminUser;
 import use.NormalUser;
 import use.User;
-
 import java.util.Scanner;
 
 public class Master {
@@ -14,9 +13,8 @@ public class Master {
         String name = sc.nextLine();
 
         System.out.print("请选择权限：");
-        int buf = sc.nextInt();
-        //挺有意思，新的写法
-        return switch(buf){
+        int id = sc.nextInt();
+        return switch(id){
             case 1 ->  new AdminUser(name);
             case 2 ->  new NormalUser(name);
             default -> null;
@@ -24,7 +22,7 @@ public class Master {
 
     }
     public static void main(String[] args) {
-        BooList boolist = new BooList();
+        BookList booklist = new BookList();
 
         User user = login();
         while(true){
@@ -33,7 +31,7 @@ public class Master {
             int choice = user.menu();
             // 你需要根据这个返回值去执行具体的业务逻辑。
             //调用具体的接口，作用与书架，
-            user.doOperation(choice,boolist);
+            user.doOperation(choice,booklist);
 
         }
     }
