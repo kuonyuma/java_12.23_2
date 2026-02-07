@@ -9,14 +9,15 @@ public class Book {
     private String author;
     private String type;
     private int price;//价格
-    private boolean isBorrow;
+    private int count;//相同书的数量
 
     public Book(String name,String author,String type,int price){
         this.name = name;
         this.author = author;
         this.type = type;
         this.price = price;
-        //初始值为fals不用初始化
+        this.count = 1;
+
     }
     public Book() {
 
@@ -24,14 +25,6 @@ public class Book {
 
     public String getName() {
         return name;
-    }
-
-    public void setIsBorrow(boolean  buf) {
-         this.isBorrow = buf;
-    }
-
-    public boolean isBorrow() {
-        return isBorrow;
     }
 
     public void setName(String name) {
@@ -62,6 +55,13 @@ public class Book {
         this.price = price;
     }
 
+    public void setCount(int count){
+        this.count += count;
+    }
+    public int getCount( ){
+        return count;
+    }
+
     @Override
     public String toString() {
         return "book{" +
@@ -69,7 +69,7 @@ public class Book {
                 ", author='" + author + '\'' +
                 ", type='" + type + '\'' +
                 ", price=" + price +
-                ", isBorrow=" + (!isBorrow ? "在库" : "借出") +
+                ", count=" + (count == 0 ? "已经结完" : count ) +
                 '}';
     }
 
@@ -77,10 +77,10 @@ public class Book {
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Book book = (Book) o;
-        return price == book.price && isBorrow == book.isBorrow && Objects.equals(name, book.name) && Objects.equals(author, book.author) && Objects.equals(type, book.type);
+        return price == book.price &&  Objects.equals(name, book.name) && Objects.equals(author, book.author) && Objects.equals(type, book.type);
     }
     @Override
     public int hashCode() {
-        return Objects.hash(name, author, type, price, isBorrow);
+        return Objects.hash(name, author, type, price);
     }
 }

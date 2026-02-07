@@ -35,4 +35,14 @@ public class Master {
 
         }
     }
+    public static void main1(String[] args){
+        String name = "我不想当牛马";
+        Scanner sc = new Scanner(System.in);
+        String src = sc.nextLine();
+        if(name.contains(src)){
+            System.out.println("我也不想");
+        }else{
+            System.out.println("嗯？");
+        }
+    }
 }

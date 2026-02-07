@@ -1,9 +1,6 @@
 package book;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 //有书一定有书架
 public class BookList {
@@ -28,18 +25,32 @@ public class BookList {
         books.put(book.getName(),book);
     }
 
-    //凭借书名访问书籍
-    public Book getBook(String name){
-        return books.get(name);
-    }
+
+
     //删除书籍
     public void dealBook(String name){
         books.remove(name);
     }
-    //查找书籍
-    public boolean find(String name){
-        return books.containsKey(name);
+    //查找(精确查找与模糊查找)
+    public Book findBook(){
+        Scanner sc = new Scanner(System.in);
+        String str = sc.nextLine();
+        //精确搜索
+        Book book = books.get(str);
+        if( books.get(str) != null){
+            return book;
+        }
+        //模糊搜索
+        for(Book book1 : books.values()){
+            String name = book1.getName();
+            if(name != null && name.contains(str)){
+                return book1;
+            }
+        }
+
+        return null;
     }
+
     //遍历书籍
     public Set<Map.Entry<String, Book>> getAllBooks() {
             return books.entrySet();
